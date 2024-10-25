@@ -1,0 +1,55 @@
+plugins {
+    id "com.android.application"
+    id "kotlin-android" // Kotlin support
+    id 'com.google.gms.google-services' // Google services for Firebase
+    id "dev.flutter.flutter-gradle-plugin" // Flutter plugin
+}
+
+android {
+    namespace = "com.news.demo_news" // Your application ID
+    compileSdk = flutter.compileSdkVersion // Use Flutter's compileSdkVersion
+
+    ndkVersion = flutter.ndkVersion // Use Flutter's NDK version
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8 // Set Java compatibility
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8 // Set Kotlin JVM target
+    }
+
+    defaultConfig {
+        applicationId = "com.example.demo_news" // Your unique application ID
+        minSdk = 23 // Minimum SDK version
+        targetSdk = flutter.targetSdkVersion // Target SDK version
+        versionCode = flutter.versionCode // Version code
+        versionName = flutter.versionName // Version name
+    }
+
+    buildTypes {
+        release {
+            // Add your own signing config for the release build
+            signingConfig = signingConfigs.debug // For testing, use debug signing
+        }
+    }
+}
+
+// Add your dependencies here
+dependencies {
+    classpath 'com.google.gms:google-services:4.3.10' 
+    // Firebase BOM for managing Firebase library versions
+    implementation platform('com.google.firebase:firebase-bom:31.0.0') // Use the latest BOM version
+
+    // Example Firebase dependencies
+    implementation 'com.google.firebase:firebase-analytics-ktx' // Firebase Analytics
+    // Uncomment and add other Firebase dependencies as needed
+    // implementation 'com.google.firebase:firebase-auth-ktx' // Firebase Authentication
+    // implementation 'com.google.firebase:firebase-firestore-ktx' // Firestore
+    // implementation 'com.google.firebase:firebase-messaging-ktx' // Firebase Messaging
+}
+apply plugin: 'com.google.gms.google-services'
+flutter {
+    source = "../.." // Path to your Flutter source code
+}
